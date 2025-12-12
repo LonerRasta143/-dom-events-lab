@@ -19,7 +19,7 @@ let currentOperator = "";
 
 //Make Number Clickable
 numberButton.forEach(function(button) {
-    button.addEventListener("click", function(){
+    button.addEventListener("click", (event){
     secondNumber += button.textContent;
     display.textContent = secondNumber;
     });
@@ -28,7 +28,7 @@ numberButton.forEach(function(button) {
 
 //Make Operators Clickable
 operatorButtons.forEach(function(button){
-    button.addEventListener("click", function(){
+    button.addEventListener("click", (event){
         const value =button.textContent;
   //store numbers
         firstNumber = secondNumber;
@@ -38,12 +38,12 @@ operatorButtons.forEach(function(button){
 });
 
 //Make equalbutton Clickable
-equalButton.addEventListener("click", function(){
+equalButton.addEventListener("click", (event){
     if(firstNumber === "" || secondNumber === "") return;
 
     const a = Number (firstNumber);
     const b = Number (secondNumber);
-    let result =0;
+    let result ="";
 
     
 });
@@ -51,7 +51,7 @@ equalButton.addEventListener("click", function(){
 //Clear Button functional
 
 
-clearButton.addEventListener("click", function () {
+clearButton.addEventListener("click", (event) {
     firstNumber = "";
     secondNumber = "";
     currentNumber = "";
