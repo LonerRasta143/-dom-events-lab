@@ -3,38 +3,41 @@
 //Diplay number and total
 const display= document.querySelector(".display");
 //Number buttons
-const numberButton= document.querySelectorAll("button.number");
+const numberButton= document.querySelectorAll(".button.number");
 //Operator buttons
-const operatorButtons= document.querySelectorAll("button.operator");
+const operatorButtons= document.querySelectorAll(".button.operator");
 //Equal button
 const equalButton= document.querySelector(".button.equals");
 //claer button
 const clearButton = document.querySelector(".button.clear");
 
 //Holding input
-let currentNumber= "";
+
 let firstNumber="";
 let secondNumber= "";
 let currentOperator = "";
 
+
+
 //Make Number Clickable
 numberButton.forEach(function(button) {
     button.addEventListener("click", (event) => {
-    secondNumber += button.textContent;
+        secondNumber += button.textContent;
     display.textContent = secondNumber;
     });
 
 });
 
 //Make Operators Clickable
-operatorButtons.forEach(function(button){
-    button.addEventListener("click", (event) => {
-        const value =button.textContent;
-  //store numbers
+operatorButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        if(secondNumber === "") return;
+
         firstNumber = secondNumber;
-        currentOperator = value;
+        currentOperator = button.textContent;
         secondNumber = "";
     })
+    
 });
 
 //Make equalbutton Clickable
@@ -43,29 +46,30 @@ equalButton.addEventListener("click", (event) => {
 
     const a = Number (firstNumber);
     const b = Number (secondNumber);
-    let result ="";
+    let result;
 
+    if (currentOperator === "+") result = a + b;
+    if (currentOperator === "-") result = a - b;
+    if (currentOperator === "*") result = a * b;
+    if (currentOperator === "/") result = a / b;
     
+    display.textContent = result;
+
+    firstNumber = "";
+    secondNumber = result.tooString();
+    currentOperator = "";
+
 });
 
 //Clear Button functional
 
 
-clearButton.addEventListener("click", (event) => {
+clearButton.addEventListener("click", () => {
     firstNumber = "";
     secondNumber = "";
-    currentNumber = "";
+    currentOperator="";
     display.textContent = "";
 });
 
-if (value === "c"){
-    firstNumber = "";
-    secondNumber= "";
-    currentNumb= "";
-    display.textContent= "";
-    return;
-};
 
-//show results
-display.textContent = result;
 
